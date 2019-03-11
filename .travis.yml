@@ -1,19 +1,32 @@
 language: node_js
+node_js:
+    - "10"
+sudo: true
+dist: trusty
 
-env:
-    global:
-        - PATH=$HOME/.local/bin:$PATH
+branches:
+    only:
+        - master
+    
+script:
+    - npm run build
+
+#language: node_js
+
+#env:
+#    global:
+#        - PATH=$HOME/.local/bin:$PATH
         
-before_install:
-    - pip install --user awscli nodejs
+#before_install:
+#    - pip install --user awscli nodejs
 
-jobs:
-    include:
-        - stage: build
-        script:
-            - npm -v
-            - npm run build
-        - stage: push
-        script:
-            - cd dist
-            - aws s3 sync ChatTool s3://app-chat-7/
+#jobs:
+#    include:
+#        - stage: build
+#        script:
+#            - npm -v
+#            - npm run build
+#        - stage: push
+#        script:
+#            - cd dist
+#            - aws s3 sync ChatTool s3://app-chat-7/
