@@ -1,27 +1,27 @@
 language: node_js
 node_js:
-    - "10"
+  - "10"
 sudo: true
 dist: trusty
 
 branches:
-    only:
-        - master
+  only:
+    - master
        
 env:
-    global:
-        - PATH=$HOME/.local/bin:$PATH
+  global:
+    - PATH=$HOME/.local/bin:$PATH
         
 before_install:
-    - pip install --user awscli
+  - pip install --user awscli
 
 jobs:
-    include:
-        - stage: build
-        script:
-            - npm -v
-            - npm run build
-        - stage: push
-        script:
-            - cd dist
-            - aws s3 sync ChatTool s3://app-chat-7/
+  include:
+    - stage: build
+      script:
+        - npm -v
+        - npm run build
+    - stage: push
+      script:
+        - cd dist
+        - aws s3 sync ChatTool s3://app-chat-7/
