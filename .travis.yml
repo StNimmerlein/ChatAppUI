@@ -21,7 +21,5 @@ jobs:
       script:
         - npm -v
         - npm run build
-    - stage: push
-      script:
         - cd dist
         - aws s3 sync ChatTool s3://app-chat-7/
