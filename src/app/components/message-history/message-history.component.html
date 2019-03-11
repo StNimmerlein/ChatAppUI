@@ -1,0 +1,10 @@
+<div class="messages">
+  <div class="inner">
+    <div class="placeholder">
+      <div class="inner-placeholder">
+        Only messages that are at most one day old are loaded.
+      </div>
+    </div>
+    <app-message class="message" *ngFor="let message of messages" [message]="message"></app-message>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="card message">
+  <div class="card-body">
+    <h5 class="card-title header">
+      <div class="author">{{message.Author}}</div>
+      <button class="delete-button btn btn-light" (click)="delete()"><i class="fas fa-trash"></i></button>
+    </h5>
+    <h6 class="card-subtitle text-muted mb-2">{{formatDateTime(message.Time)}}</h6>
+    <p class="card-text">{{message.Text}}</p>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="text-input">
+  <input [(ngModel)]="author" class="form-control author" placeholder="Name">
+  <textarea [(ngModel)]="text" class="form-control text" placeholder="Enter message"
+            (keypress)="pressKey($event)"></textarea>
+</div>
+<button (click)="sendMessage()" class="btn btn-primary send"><i class="fas fa-check"></i></button>
