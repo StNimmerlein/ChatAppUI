@@ -22,4 +22,4 @@ jobs:
         - npm -v
         - npm run build
         - cd dist
-        - aws s3 sync ChatTool s3://app-chat-7/
+#        - aws s3 sync ChatTool s3://app-chat-7/
