@@ -1,0 +1,8 @@
+<div *ngIf="!isLoggedIn()" class="wrapper">
+  <div class="user-info">Not logged in</div>
+  <button (click)="login()" class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i></button>
+</div>
+<div *ngIf="isLoggedIn()" class="wrapper">
+  <div class="user-info">Logged in as {{ getUserName() }}</div>
+  <button (click)="logout()" class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i></button>
+</div>
