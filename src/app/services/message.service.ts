@@ -6,6 +6,7 @@ import {MessageEvent} from '../datamodels/message-event';
 import {MessageInput} from '../datamodels/message-input';
 import {WebsocketService} from './websocket.service';
 import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class MessageService {
 
   private readonly useDummy = false;
 
-  private readonly apiPath = 'https://6p7qatgrc6.execute-api.eu-west-1.amazonaws.com/prod';
+  private readonly apiPath = environment.restApiUrl;
   private readonly options: { headers: HttpHeaders };
   private messagesSubject: Subject<MessageEvent>;
 

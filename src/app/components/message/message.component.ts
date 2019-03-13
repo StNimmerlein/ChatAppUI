@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MessageOutput} from '../../datamodels/message-output';
 import {MessageService} from '../../services/message.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-message',
@@ -14,10 +15,14 @@ export class MessageComponent implements OnInit {
   @Input()
   shaded: boolean;
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService, private authService: AuthService) {
   }
 
   ngOnInit() {
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 
   formatDateTime(dateString: string) {

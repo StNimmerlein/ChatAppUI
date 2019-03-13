@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  authClientId: '248rn51k07nfkdmpgeedgse8se',
+  authDomain: 'https://testapp77.auth.eu-west-1.amazoncognito.com',
+  userPoolId: 'eu-west-1_mUr2byLaZ',
+  authRedirectUri: 'http://localhost:4200',
+  restApiUrl: ' https://6p7qatgrc6.execute-api.eu-west-1.amazonaws.com/prod',
+  webSocketUrl: 'wss://ox4jvebud5.execute-api.eu-west-1.amazonaws.com/test'
 };
 
 /*

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from '../../services/message.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-sender',
@@ -10,14 +11,14 @@ export class SenderComponent implements OnInit {
   author: string;
   text: string;
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService, private authService: AuthService) {
   }
 
   ngOnInit() {
   }
 
   sendMessage() {
-    this.messageService.postMessage(this.text, this.author).subscribe();
+    this.messageService.postMessage(this.text, this.authService.getUserName()).subscribe();
     this.text = undefined;
   }
 
@@ -25,5 +26,9 @@ export class SenderComponent implements OnInit {
     if (event.ctrlKey && event.code === 'Enter') {
       this.sendMessage();
     }
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }

@@ -1,11 +1,17 @@
 :host {
-  display: block;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   padding: 16px;
+}
+
+.user {
+  height: 48px;
 }
 
 .history {
   height: 100vh;
-  max-height: calc(100vh - 186px);
+  max-height: calc(100vh - 186px - 48px);
 }
 
 .sender {

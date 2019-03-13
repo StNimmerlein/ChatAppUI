@@ -9,13 +9,15 @@ import {HttpClientModule} from '@angular/common/http';
 import { SenderComponent } from './components/sender/sender.component';
 import {FormsModule} from '@angular/forms';
 import {WebsocketService} from './services/websocket.service';
+import { UserBarComponent } from './components/user-bar/user-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MessageHistoryComponent,
     MessageComponent,
-    SenderComponent
+    SenderComponent,
+    UserBarComponent
   ],
   imports: [
     BrowserModule,

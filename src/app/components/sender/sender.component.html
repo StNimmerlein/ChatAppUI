@@ -1,5 +1,9 @@
+<div *ngIf="!isLoggedIn()" class="overlay">
+  <div class="overlay-text">
+    Only registered users can send messages!
+  </div>
+</div>
 <div class="text-input">
-  <input [(ngModel)]="author" class="form-control author" placeholder="Name">
   <textarea [(ngModel)]="text" class="form-control text" placeholder="Enter message"
             (keypress)="pressKey($event)"></textarea>
 </div>

@@ -19,7 +19,19 @@ jobs:
   include:
     - stage: build
       script:
-        - npm -v
-        - npm run build
-        - cd dist
+        - if [ "$AUTH_STACK" == "" ]; then echo "You must provide an auth stack name as environment variable AUTH_STACK."; exit 1; fi
+        - if [ "$STACK" == "" ]; then echo "You must provide a backend stack name as environment variable STACK."; exit 1; fi
+        - stackExports=$(aws cloudformation list-exports | jq -c '.Exports[]')
+        - userPool=$(echo $stackExports | jq -r "select(.Name == \"$AUTH_STACK:UserPoolId\") | .Value")
+        - clientId=$(echo $stackExports | jq -r "select(.Name == \"$AUTH_STACK:AppClientId\") | .Value")
+        - authDomain=$(echo $stackExports | jq -r "select(.Name == \"$AUTH_STACK:UserPoolDomain\") | .Value")
+        - restUrl=$(echo $stackExports | jq -r "select(.Name == \"$STACK:RestApiUrl\") | .Value")
+        - webSocketUrl=$(echo $stackExports | jq -r "select(.Name == \"$STACK:WebSocketApiUrl\") | .Value")
+        - url="http://app-chat-7.s3-website-eu-west-1.amazonaws.com"
+        - chmod +x updateClientUrls.sh
+        - cat src/environments/environment.aws.template.ts | sed "s/\$APP_CLIENT_ID/\$clientId/g" | sed "s/\$AUTH_DOMAIN/\$authDomain/g" | sed "s/\$USER_POOL_ID/\$userPool/g" | sed "s/\$REDIRECT_URI/\$url/g" | sed "s/\$REST_API_URL/\$restUrl/g" | sed "s/\$WEB_SOCKET_URL/\$webSocketUrl/g" > src/environment/environment.aws.ts
+        - cat src/environment/environment.aws.ts
+#        - npm run build
+#        - cd dist
 #        - aws s3 sync ChatTool s3://app-chat-7/
+#        - ./updateClientUrls.sh $userPool $clientId $url

@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Observable, Observer, Subject} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsocketService {
 
-  private WEBSOCKET_URL = 'wss://ox4jvebud5.execute-api.eu-west-1.amazonaws.com/test';
+  private WEBSOCKET_URL = environment.webSocketUrl;
   private subject: Subject<MessageEvent>;
 
   constructor() {
