@@ -34,5 +34,6 @@ jobs:
         - ng build --c aws
         - cd dist
         - aws s3 sync ChatTool s3://app-chat-7/
+        - cd ..
         - chmod +x updateClientUrls.sh
         - ./updateClientUrls.sh $userPool $clientId $url
