@@ -28,11 +28,11 @@ jobs:
         - restUrl=$(echo $stackExports | jq -r "select(.Name == \"$STACK:RestApiUrl\") | .Value")
         - webSocketUrl=$(echo $stackExports | jq -r "select(.Name == \"$STACK:WebSocketApiUrl\") | .Value")
         - url="http://app-chat-7.s3-website-eu-west-1.amazonaws.com"
-#        - chmod +x updateClientUrls.sh
         - cat src/environments/environment.aws.template.ts | sed "s#\$APP_CLIENT_ID#$clientId#g" | sed "s#\$AUTH_DOMAIN#$authDomain#g" | sed "s#\$USER_POOL_ID#$userPool#g" | sed "s#\$REDIRECT_URI#$url#g" | sed "s#\$REST_API_URL#$restUrl#g" | sed "s#\$WEB_SOCKET_URL#$webSocketUrl#g" > environment.aws.ts
         - cat environment.aws.ts
         - mv environment.aws.ts src/environments/
-#        - npm run build
-#        - cd dist
-#        - aws s3 sync ChatTool s3://app-chat-7/
-#        - ./updateClientUrls.sh $userPool $clientId $url
+        - npm run build
+        - cd dist
+        - aws s3 sync ChatTool s3://app-chat-7/
+        - chmod +x updateClientUrls.sh
+        - ./updateClientUrls.sh $userPool $clientId $url
